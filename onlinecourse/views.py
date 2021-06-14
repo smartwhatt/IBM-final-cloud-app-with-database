@@ -147,13 +147,11 @@ def show_exam_result(request, course_id, lesson_id, submission_id):
     questions = lesson.question_set.all()
 
     full_score = 0
-    for question in questions:
-        full_score += question.grade
-    
     total_score = 0
     for question in questions:
+        full_score += question.grade
         if question.is_get_score(selected_choices):
-            total_score += question.grade
+            total_score += question.grade        
 
     final_grade = round((total_score/full_score)*100)
 
